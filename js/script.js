@@ -1,9 +1,7 @@
-
 $(".owl-carousel").owlCarousel({
     autoplay: true,
     loop: true,
     items: 1,
-    // stagePadding: 10,
 });
 
 AOS.init({

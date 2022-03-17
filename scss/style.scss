@@ -146,6 +146,14 @@ header {
 
     .text {
       padding-right: 8rem !important;
+
+      h1 {
+        font-weight: 600;
+
+        span {
+          font-weight: 700;
+        }
+      }
     }
 
     button {
