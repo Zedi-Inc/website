@@ -114,53 +114,83 @@
 
               <div class="col-12">
                 <div class="d-flex flex-wrap pt-3 pb-5 selection">
-                  <button class="btn select">Digital Strategy</button>
-                  <button class="btn select">Content Creation</button>
-                  <button class="btn select">Community Management</button>
-                  <button class="btn select">Influencer Marketing</button>
-                  <button class="btn select">Production</button>
-                  <button class="btn select">Graphic Design</button>
-                  <button class="btn select">Web Design</button>
-                  <button class="btn select">Mobile App Design</button>
-                  <button class="btn select">Press Distribution</button>
-                  <button class="btn select">Media Buying</button>
+                  <button data-selected="false" class="btn select">
+                    Digital Strategy
+                  </button>
+                  <button data-selected="false" class="btn select">
+                    Content Creation
+                  </button>
+                  <button data-selected="false" class="btn select">
+                    Community Management
+                  </button>
+                  <button data-selected="false" class="btn select">
+                    Influencer Marketing
+                  </button>
+                  <button data-selected="false" class="btn select">
+                    Production
+                  </button>
+                  <button data-selected="false" class="btn select">
+                    Graphic Design
+                  </button>
+                  <button data-selected="false" class="btn select">
+                    Web Design
+                  </button>
+                  <button data-selected="false" class="btn select">
+                    Mobile App Design
+                  </button>
+                  <button data-selected="false" class="btn select">
+                    Press Distribution
+                  </button>
+                  <button data-selected="false" class="btn select">
+                    Media Buying
+                  </button>
                 </div>
               </div>
-              <div class="row inputs">
-                <div class="col-md-6">
-                  <div class="input">
-                    <label for="name" class="form-label">Your name</label><br />
-                    <input id="name" type="text" placeholder="John Adebayo" />
+              <form>
+                <div class="row inputs">
+                  <div class="col-md-6">
+                    <div class="input">
+                      <label for="name" class="form-label">Your name</label
+                      ><br />
+                      <input id="name" type="text" placeholder="John Adebayo" />
+                    </div>
+                    <div class="input py-4">
+                      <label for="email" class="form-label">Your email</label>
+                      <input
+                        id="email"
+                        type="email"
+                        placeholder="Name@email.com"
+                      />
+                    </div>
                   </div>
-                  <div class="input py-4">
-                    <label for="email" class="form-label">Your email</label>
-                    <input
-                      id="email"
-                      type="email"
-                      placeholder="Name@email.com"
-                    />
+                  <div class="col-md-6">
+                    <div class="input">
+                      <label for="message" class="form-label"
+                        >Your message</label
+                      >
+                      <textarea
+                        rows="6"
+                        placeholder="Message"
+                        id="message"
+                        class="form-control"
+                        aria-label="With textarea"
+                      ></textarea>
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <div class="action-button pt-5">
+                      <p id="error" class="text-warning"></p>
+                      <button
+                        id="submit"
+                        type="submit"
+                        class="btn btn-danger text-light px-4"
+                      >
+                        Send Message
+                      </button>
+                    </div>
                   </div>
                 </div>
-                <div class="col-md-6">
-                  <div class="input">
-                    <label for="message" class="form-label">Your message</label>
-                    <textarea
-                      rows="6"
-                      placeholder="Message"
-                      id="message"
-                      class="form-control"
-                      aria-label="With textarea"
-                    ></textarea>
-                  </div>
-                </div>
-                <div class="col-12">
-                  <div class="action-button pt-5">
-                    <button id="submit" class="btn btn-danger text-light px-4">
-                      Send Message
-                    </button>
-                  </div>
-                </div>
-              </div>
+              </form>
             </div>
           </div>
         </section>
@@ -394,7 +424,15 @@
       integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
       crossorigin="anonymous"
     ></script>
-
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"
+    ></script>
+    <script type="text/javascript">
+      (function () {
+        emailjs.init("vPlCbsCtC1L-6jNsW");
+      })();
+    </script>
     <script src="./js/contact.js"></script>
   </body>
 </html>

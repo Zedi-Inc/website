@@ -4,59 +4,26 @@ const nameInput = document.querySelector("#name");
 const emailInput = document.querySelector("#email");
 const messageInput = document.querySelector("#message");
 const submit = document.querySelector("#submit");
+const form = document.querySelector("form");
+const error = document.querySelector("#error");
 
 const selectedItems = [];
 let nameValue = "";
 let emailValue = "";
 let messageValue = "";
-
-let selections = [
-  { value: "Digital Strategy", selected: false },
-  { value: "Content Creation", selected: false },
-  { value: "Community Management", selected: false },
-  { value: "Influencer Marketing", selected: false },
-  { value: "Production", selected: false },
-  { value: "Graphic Design", selected: false },
-  { value: "Web Design", selected: false },
-  { value: "Mobile App Design", selected: false },
-  { value: "Press Distribution", selected: false },
-  { value: "Media Buying", selected: true },
-];
+let selections;
+let errorMsg;
 
 selectBtn.forEach((btn, i) => {
   btn.addEventListener("click", () => {
-    btn.classList.toggle("selected");
-    if (
-      selectedItems.indexOf(btn.textContent) < 0 &&
-      btn.className.includes("selected")
-    ) {
-      selectedItems.push(btn.textContent);
-      console.log("Yap");
-      return;
-    } else if (
-      selectedItems.indexOf(btn.textContent) > 0 ||
-      !btn.className.includes("selected")
-    ) {
-      selectedItems.splice(i, 1);
-      console.log(btn.className.includes("selected"), "Nope");
-      return;
+    let selectedData = btn.dataset.selected;
+    if (selectedData === "true") {
+      btn.dataset.selected = "false";
+    } else {
+      btn.dataset.selected = "true";
     }
   });
 });
-
-// selections.forEach((item, i) => {
-//   const button = document.createElement("button");
-
-//   button.addEventListener("click", () => {
-//     item.selected = !item.selected;
-//   });
-
-//   const text = document.createTextNode(item.value);
-//   button.classList.add("btn");
-//   item.selected ? button.classList.add("selected") : null;
-//   button.appendChild(text);
-//   selectionWrapper.appendChild(button);
-// });
 
 nameInput.addEventListener("input", (e) => {
   nameValue = e.target.value;
@@ -70,11 +37,48 @@ messageInput.addEventListener("input", (e) => {
   messageValue = e.target.value;
 });
 
-const validate = () => {};
+const getSelections = () => {
+  const arr = Array.from(selectBtn);
+  selections = arr
+    .filter((item) => item.dataset.selected === "true")
+    .map((sel) => sel.textContent.trim());
+};
+
+const sendEmail = () => {
+  console.log(selections.toString(), nameValue, emailValue, messageValue);
+};
+
+const validate = () => {
+  if (nameValue.trim().length < 5) {
+    errorMsg = "Please input valid fullname";
+    return;
+  } else if (
+    !emailValue
+      .toLowerCase()
+      .match(
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      )
+  ) {
+    errorMsg = "Please input valid email";
+    return;
+  } else if (selections.length < 1) {
+    errorMsg = "Please select at least one service";
+    return;
+  } else {
+    errorMsg = "";
+    sendEmail();
+  }
+};
+
+const reset = () => {
+  errorMsg = "";
+};
 
 submit.addEventListener("click", (e) => {
   e.preventDefault();
+  getSelections();
   validate();
-  // email handler
-  console.log(selectedItems, nameValue, emailValue, messageValue);
+  errorMsg.length && (error.innerHTML = errorMsg);
+  reset();
+  form.reset();
 });
